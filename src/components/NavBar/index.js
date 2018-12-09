@@ -7,6 +7,8 @@ import IconButton from "@material-ui/core/IconButton";
 import InputBase from "@material-ui/core/InputBase";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import SearchIcon from "@material-ui/icons/Search";
+import Button from "@material-ui/core/Button";
+import PersonAddIcon from "@material-ui/icons/PersonAdd";
 import { fade } from "@material-ui/core/styles/colorManipulator";
 import { withStyles } from "@material-ui/core/styles";
 
@@ -21,6 +23,20 @@ const styles = theme => ({
     marginLeft: -12,
     marginRight: 20
   },
+
+  button: {
+    margin: theme.spacing.unit
+  },
+  leftIcon: {
+    marginRight: theme.spacing.unit
+  },
+  rightIcon: {
+    marginLeft: theme.spacing.unit
+  },
+  iconSmall: {
+    fontSize: 20
+  },
+
   title: {
     display: "none",
     [theme.breakpoints.up("sm")]: {
@@ -85,8 +101,8 @@ class NavBar extends React.Component {
     const { classes } = this.props;
 
     return (
-      <div>
-        <AppBar position="static" color="default">
+      <div className={classes.root}>
+        <AppBar position="static" color="primary">
           <Toolbar>
             <IconButton color="inherit">
               <AccountCircle />
@@ -106,6 +122,14 @@ class NavBar extends React.Component {
                 }}
               />
             </div>
+            <Button
+              variant="contained"
+              color="secondary"
+              className={classes.button}
+            >
+              Add Contact
+              <PersonAddIcon className={classes.leftIcon} />
+            </Button>
           </Toolbar>
         </AppBar>
       </div>
