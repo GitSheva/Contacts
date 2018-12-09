@@ -11,6 +11,9 @@ import Button from "@material-ui/core/Button";
 import PersonAddIcon from "@material-ui/icons/PersonAdd";
 import { fade } from "@material-ui/core/styles/colorManipulator";
 import { withStyles } from "@material-ui/core/styles";
+import { Link } from "react-router-dom";
+
+import "./NavBar.css";
 
 const styles = theme => ({
   root: {
@@ -126,6 +129,8 @@ class NavBar extends React.Component {
               variant="contained"
               color="secondary"
               className={classes.button}
+              component={Link}
+              to="/AddContact"
             >
               Add Contact
               <PersonAddIcon className={classes.leftIcon} />

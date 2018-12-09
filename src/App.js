@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 import NavBar from "./components/NavBar";
-import Login from "./components/Login";
+import AddContact from "./components/AddContact";
+import Main from "./components/Main";
 
 import "./App.css";
 
@@ -13,7 +14,8 @@ class App extends Component {
         <div>
           <NavBar />
           <Switch>
-            <Route path="/login" component={Login} />
+            <Route path="/" component={Main} exact />
+            <Route path="/AddContact" component={AddContact} />
           </Switch>
         </div>
       </BrowserRouter>
