@@ -229,73 +229,73 @@ class EnhancedTable extends React.Component {
         "Professional football player"
       ),
       createData(
-        "Diego Maradona",
+        "Gabriel Batistuta",
         "diego@hotmail.com",
         49856325,
         "Professional football player"
       ),
       createData(
-        "Diego Maradona",
+        "Juan Veron",
         "diego@hotmail.com",
         49856325,
         "Professional football player"
       ),
       createData(
-        "Diego Maradona",
+        "Diego Simeone",
         "diego@hotmail.com",
         49856325,
         "Professional football player"
       ),
       createData(
-        "Diego Maradona",
+        "Javier Zanetti",
         "diego@hotmail.com",
         49856325,
         "Professional football player"
       ),
       createData(
-        "Diego Maradona",
+        "Hernan Crespo",
         "diego@hotmail.com",
         49856325,
         "Professional football player"
       ),
       createData(
-        "Diego Maradona",
+        "Lionel Messi",
         "diego@hotmail.com",
         49856325,
         "Professional football player"
       ),
       createData(
-        "Diego Maradona",
+        "Sergio Aguero",
         "diego@hotmail.com",
         49856325,
         "Professional football player"
       ),
       createData(
-        "Diego Maradona",
+        "Carlos Tevez",
         "diego@hotmail.com",
         49856325,
         "Professional football player"
       ),
       createData(
-        "Diego Maradona",
+        "Enzo Perez",
         "diego@hotmail.com",
         49856325,
         "Professional football player"
       ),
       createData(
-        "Diego Maradona",
+        "Gonzalo Higuain",
         "diego@hotmail.com",
         49856325,
         "Professional football player"
       ),
       createData(
-        "Diego Maradona",
+        "Paulo Dybala",
         "diego@hotmail.com",
         49856325,
         "Professional football player"
       ),
       createData(
-        "Diego Maradona",
+        "Angel Di Maria",
         "diego@hotmail.com",
         49856325,
         "Professional football player"
