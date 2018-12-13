@@ -5,6 +5,7 @@ class Textc extends Component {
     super(props);
     this.state = { value: "", prevProps: { value: "" } };
     this.handleOnChange = this.handleOnChange.bind(this);
+    this.handleOnClick = this.handleOnClick.bind(this);
   }
 
   componentDidMount() {
@@ -24,13 +25,17 @@ class Textc extends Component {
 
     if (state.prevProps.value !== props.value) {
       cstate = { value: props.value };
+      state.prevProps = { value: props.value };
     } else {
       cstate = { value: state.value };
     }
 
-    state.prevProps = { value: props.value };
-
     return cstate;
+  }
+
+  handleOnClick(event) {
+    alert(this.state.value);
+    event.preventDefault();
   }
 
   handleOnChange(event) {
@@ -45,6 +50,7 @@ class Textc extends Component {
           value={this.state.value}
           onChange={this.handleOnChange}
         />
+        <button onClick={this.handleOnClick}>Alert</button>
       </div>
     );
   }
