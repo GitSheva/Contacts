@@ -4,8 +4,8 @@ import Textc from "./Textc";
 const Selectc = () => {
   let [value, setValue] = useState("");
 
-  const handleOnChange = ev => {
-    setValue(ev.target.value);
+  const handleOnChange = event => {
+    setValue(event.target.value);
   };
 
   return (

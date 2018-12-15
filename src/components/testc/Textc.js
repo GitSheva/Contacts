@@ -1,12 +1,7 @@
 import React, { useState } from "react";
 
 const Textc = props => {
-  console.log("Props.value: " + props.value);
-  let d = props.value;
-  console.log("D value: " + d);
-  let [value, setValue] = useState(d);
-
-  console.log("State value: " + value);
+  let [value, setValue] = useState(props.value);
 
   const handleOnClick = event => {
     alert(value);
