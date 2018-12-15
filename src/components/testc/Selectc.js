@@ -1,30 +1,23 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import Textc from "./Textc";
 
-class Selectc extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { value: "" };
+const Selectc = () => {
+  let [value, setValue] = useState("");
 
-    this.handleOnChange = this.handleOnChange.bind(this);
-  }
+  const handleOnChange = ev => {
+    setValue(ev.target.value);
+  };
 
-  handleOnChange(event) {
-    this.setState({ value: event.target.value });
-  }
-
-  render() {
-    return (
-      <div>
-        <select onChange={this.handleOnChange}>
-          <option>Ira</option>
-          <option>Artem</option>
-          <option>Antoshka</option>
-        </select>
-        <Textc value={this.state.value} />
-      </div>
-    );
-  }
-}
+  return (
+    <div>
+      <select onChange={handleOnChange}>
+        <option>Ira</option>
+        <option>Artem</option>
+        <option>Antoshka</option>
+      </select>
+      <Textc value={value} />
+    </div>
+  );
+};
 
 export default Selectc;
