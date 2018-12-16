@@ -15,7 +15,7 @@ const Selectc = () => {
         <option>Artem</option>
         <option>Antoshka</option>
       </select>
-      <Textc value={value} />
+      <Textc selectValue={value} />
     </div>
   );
 };

@@ -1,7 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
-const Textc = props => {
-  let [value, setValue] = useState(props.value);
+const Textc = ({ selectValue }) => {
+  let [value, setValue] = useState(selectValue);
+
+  useEffect(() => {
+    setValue(selectValue);
+  },
+  [selectValue],
+  );
 
   const handleOnClick = event => {
     alert(value);
