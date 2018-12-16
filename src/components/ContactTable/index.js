@@ -1,28 +1,28 @@
-import React from "react";
-import classNames from "classnames";
-import PropTypes from "prop-types";
-import { withStyles } from "@material-ui/core/styles";
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-import TableHead from "@material-ui/core/TableHead";
-import TablePagination from "@material-ui/core/TablePagination";
-import TableRow from "@material-ui/core/TableRow";
-import TableSortLabel from "@material-ui/core/TableSortLabel";
-import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
-import Paper from "@material-ui/core/Paper";
-import Checkbox from "@material-ui/core/Checkbox";
-import IconButton from "@material-ui/core/IconButton";
-import Tooltip from "@material-ui/core/Tooltip";
-import DeleteIcon from "@material-ui/icons/Delete";
-import FilterListIcon from "@material-ui/icons/FilterList";
-import { lighten } from "@material-ui/core/styles/colorManipulator";
+import React from 'react';
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
+import TablePagination from '@material-ui/core/TablePagination';
+import TableRow from '@material-ui/core/TableRow';
+import TableSortLabel from '@material-ui/core/TableSortLabel';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import Paper from '@material-ui/core/Paper';
+import Checkbox from '@material-ui/core/Checkbox';
+import IconButton from '@material-ui/core/IconButton';
+import Tooltip from '@material-ui/core/Tooltip';
+import DeleteIcon from '@material-ui/icons/Delete';
+import FilterListIcon from '@material-ui/icons/FilterList';
+import { lighten } from '@material-ui/core/styles/colorManipulator';
 
 let counter = 0;
-function createData(name, email, phone, job) {
+function createData(name, email, phone, website) {
   counter += 1;
-  return { id: counter, name, email, phone, job };
+  return { id: counter, name, email, phone, website };
 }
 
 function desc(a, b, orderBy) {
@@ -46,25 +46,25 @@ function stableSort(array, cmp) {
 }
 
 function getSorting(order, orderBy) {
-  return order === "desc"
+  return order === 'desc'
     ? (a, b) => desc(a, b, orderBy)
     : (a, b) => -desc(a, b, orderBy);
 }
 
 const rows = [
   {
-    id: "name",
+    id: 'name',
     numeric: false,
     disablePadding: true,
-    label: "Name"
+    label: 'Name'
   },
-  { id: "email", numeric: false, disablePadding: true, label: "Email" },
-  { id: "phone", numeric: false, disablePadding: true, label: "Phone number" },
+  { id: 'email', numeric: false, disablePadding: true, label: 'Email' },
+  { id: 'phone', numeric: false, disablePadding: true, label: 'Phone number' },
   {
-    id: "job",
+    id: 'website',
     numeric: false,
     disablePadding: true,
-    label: "Job title & company"
+    label: 'Web Site'
   }
 ];
 
@@ -97,12 +97,12 @@ class EnhancedTableHead extends React.Component {
               <TableCell
                 key={row.id}
                 numeric={row.numeric}
-                padding={row.disablePadding ? "none" : "default"}
+                padding={row.disablePadding ? 'none' : 'default'}
                 sortDirection={orderBy === row.id ? order : false}
               >
                 <Tooltip
                   title="Sort"
-                  placement={row.numeric ? "bottom-end" : "bottom-start"}
+                  placement={row.numeric ? 'bottom-end' : 'bottom-start'}
                   enterDelay={300}
                 >
                   <TableSortLabel
@@ -136,7 +136,7 @@ const toolbarStyles = theme => ({
     paddingRight: theme.spacing.unit
   },
   highlight:
-    theme.palette.type === "light"
+    theme.palette.type === 'light'
       ? {
           color: theme.palette.secondary.main,
           backgroundColor: lighten(theme.palette.secondary.light, 0.85)
@@ -146,13 +146,13 @@ const toolbarStyles = theme => ({
           backgroundColor: theme.palette.secondary.dark
         },
   spacer: {
-    flex: "1 1 100%"
+    flex: '1 1 100%'
   },
   actions: {
     color: theme.palette.text.secondary
   },
   title: {
-    flex: "0 0 auto"
+    flex: '0 0 auto'
   }
 });
 
@@ -205,112 +205,47 @@ EnhancedTableToolbar = withStyles(toolbarStyles)(EnhancedTableToolbar);
 
 const styles = theme => ({
   root: {
-    width: "100%",
+    width: '100%',
     marginTop: theme.spacing.unit * 3
   },
   table: {
     minWidth: 1020
   },
   tableWrapper: {
-    overflowX: "auto"
+    overflowX: 'auto'
   }
 });
 
 class EnhancedTable extends React.Component {
   state = {
-    order: "asc",
-    orderBy: "calories",
+    order: 'asc',
+    orderBy: 'calories',
     selected: [],
-    data: [
-      createData(
-        "Diego Maradona",
-        "diego@hotmail.com",
-        49856325,
-        "Professional football player"
-      ),
-      createData(
-        "Gabriel Batistuta",
-        "diego@hotmail.com",
-        49856325,
-        "Professional football player"
-      ),
-      createData(
-        "Juan Veron",
-        "diego@hotmail.com",
-        49856325,
-        "Professional football player"
-      ),
-      createData(
-        "Diego Simeone",
-        "diego@hotmail.com",
-        49856325,
-        "Professional football player"
-      ),
-      createData(
-        "Javier Zanetti",
-        "diego@hotmail.com",
-        49856325,
-        "Professional football player"
-      ),
-      createData(
-        "Hernan Crespo",
-        "diego@hotmail.com",
-        49856325,
-        "Professional football player"
-      ),
-      createData(
-        "Lionel Messi",
-        "diego@hotmail.com",
-        49856325,
-        "Professional football player"
-      ),
-      createData(
-        "Sergio Aguero",
-        "diego@hotmail.com",
-        49856325,
-        "Professional football player"
-      ),
-      createData(
-        "Carlos Tevez",
-        "diego@hotmail.com",
-        49856325,
-        "Professional football player"
-      ),
-      createData(
-        "Enzo Perez",
-        "diego@hotmail.com",
-        49856325,
-        "Professional football player"
-      ),
-      createData(
-        "Gonzalo Higuain",
-        "diego@hotmail.com",
-        49856325,
-        "Professional football player"
-      ),
-      createData(
-        "Paulo Dybala",
-        "diego@hotmail.com",
-        49856325,
-        "Professional football player"
-      ),
-      createData(
-        "Angel Di Maria",
-        "diego@hotmail.com",
-        49856325,
-        "Professional football player"
-      )
-    ],
+    data: [],
     page: 0,
     rowsPerPage: 5
   };
 
+  componentDidMount() {
+    fetch('https://jsonplaceholder.typicode.com/users')
+      .then(res => res.json())
+      .then(json => {
+        const dataRows = [];
+        json.forEach(item => {
+          dataRows.push(
+            createData(item.name, item.email, item.phone, item.website)
+          );
+        });
+        this.setState({ data: dataRows });
+      });
+  }
+
   handleRequestSort = (event, property) => {
     const orderBy = property;
-    let order = "desc";
+    let order = 'desc';
 
-    if (this.state.orderBy === property && this.state.order === "desc") {
-      order = "asc";
+    if (this.state.orderBy === property && this.state.order === 'desc') {
+      order = 'asc';
     }
 
     this.setState({ order, orderBy });
@@ -402,7 +337,7 @@ class EnhancedTable extends React.Component {
                         {n.phone}
                       </TableCell>
                       <TableCell component="th" scope="row" padding="none">
-                        {n.job}
+                        {n.website}
                       </TableCell>
                     </TableRow>
                   );
@@ -422,10 +357,10 @@ class EnhancedTable extends React.Component {
           rowsPerPage={rowsPerPage}
           page={page}
           backIconButtonProps={{
-            "aria-label": "Previous Page"
+            'aria-label': 'Previous Page'
           }}
           nextIconButtonProps={{
-            "aria-label": "Next Page"
+            'aria-label': 'Next Page'
           }}
           onChangePage={this.handleChangePage}
           onChangeRowsPerPage={this.handleChangeRowsPerPage}

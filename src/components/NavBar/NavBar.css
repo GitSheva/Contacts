@@ -1,3 +1,7 @@
 .root {
   width: 100%;
 }
+.headerLink {
+  font-weight: bold;
+  color: #ff0000 !important;
+}

@@ -1,12 +1,12 @@
-import React, { Component } from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import React, { Component } from 'react';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-import NavBar from "./components/NavBar";
-import AddContact from "./components/AddContact";
-import Main from "./components/Main";
-import Testc from "./components/testc/Selectc";
+import NavBar from './components/NavBar';
+import AddContact from './components/AddContact';
+import Main from './components/Main';
+import Testc from './components/testc/Selectc';
 
-import "./App.css";
+import './App.css';
 
 class App extends Component {
   render() {
