@@ -1,5 +1,47 @@
 import React, { Component } from 'react';
 import TextField from '@material-ui/core/TextField';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
+import withStyles from '@material-ui/core/styles/withStyles';
+import Paper from '@material-ui/core/Paper';
+
+const styles = theme => ({
+  buttons: {
+    display: 'flex',
+    justifyContent: 'flex-end'
+  },
+  layout: {
+    width: 'auto',
+    marginLeft: theme.spacing.unit * 2,
+    marginRight: theme.spacing.unit * 2,
+    [theme.breakpoints.up(600 + theme.spacing.unit * 2 * 2)]: {
+      width: 600,
+      marginLeft: 'auto',
+      marginRight: 'auto'
+    }
+  },
+  paper: {
+    marginTop: theme.spacing.unit * 3,
+    marginBottom: theme.spacing.unit * 3,
+    padding: theme.spacing.unit * 2,
+    [theme.breakpoints.up(600 + theme.spacing.unit * 3 * 2)]: {
+      marginTop: theme.spacing.unit * 15,
+      marginBottom: theme.spacing.unit * 6,
+      padding: theme.spacing.unit * 3
+    }
+  },
+  buttons: {
+    display: 'flex',
+    justifyContent: 'flex-end'
+  },
+  button: {
+    marginTop: theme.spacing.unit * 3,
+    marginLeft: theme.spacing.unit
+  }
+});
 
 class AddContact extends Component {
   state = {
@@ -26,43 +68,101 @@ class AddContact extends Component {
   }
 
   render() {
+    const { classes } = this.props;
     const {
       user: { name, email, phone, website }
     } = this.state;
     return (
-      <form onSubmit={this.handleSubmit}>
-        <TextField
-          label="Name"
-          value={name}
-          onChange={this.handleChange('name')}
-          margin="normal"
-        />
-        <br />
-        <TextField
-          label="Email"
-          value={email}
-          onChange={this.handleChange('email')}
-          margin="normal"
-        />
-        <br />
-        <TextField
-          label="Phone"
-          value={phone}
-          onChange={this.handleChange('phone')}
-          margin="normal"
-        />
-        <br />
-        <TextField
-          label="Website"
-          value={website}
-          onChange={this.handleChange('website')}
-          margin="normal"
-        />
-        <br />
-        <input type="submit" value="Submit" />
-      </form>
+      <React.Fragment>
+        <main className={classes.layout}>
+          <Paper className={classes.paper}>
+            <Typography component="h1" variant="h4" align="center">
+              Checkout
+            </Typography>
+            <Grid container spacing={24}>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  required
+                  id="name"
+                  name="name"
+                  label="Name"
+                  value={name}
+                  onChange={this.handleChange('name')}
+                  fullWidth
+                  autoComplete="fname"
+                />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  required
+                  id="email"
+                  name="email"
+                  value={email}
+                  onChange={this.handleChange('email')}
+                  label="Email"
+                  fullWidth
+                  autoComplete="email"
+                />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  required
+                  id="phone"
+                  name="phone"
+                  value={phone}
+                  onChange={this.handleChange('phone')}
+                  label="Phone"
+                  fullWidth
+                  autoComplete="Enter Phone Number"
+                />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  required
+                  id="website"
+                  name="website"
+                  value={website}
+                  onChange={this.handleChange('website')}
+                  label="Website"
+                  fullWidth
+                  autoComplete="enter website address"
+                />
+              </Grid>
+              {/*
+            <Grid item xs={12}>
+              <TextField
+                required
+                id="test"
+                name="test"
+                label="test"
+                fullWidth
+                autoComplete="test"
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <FormControlLabel
+                control={
+                  <Checkbox color="secondary" name="saveAddress" value="yes" />
+                }
+                label="Use this address for payment details"
+              />
+            </Grid>
+              */}
+              <Grid item xs={12}>
+                <React.Fragment>
+                  <div className={classes.buttons}>
+                    <Button variant="contained" color="primary">
+                      Primary
+                    </Button>
+                  </div>
+                </React.Fragment>
+              </Grid>
+            </Grid>
+          </Paper>
+        </main>
+      </React.Fragment>
     );
   }
 }
 
-export default AddContact;
+export default withStyles(styles)(AddContact);
