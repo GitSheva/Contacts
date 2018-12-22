@@ -1,26 +1,55 @@
-import React, { Component } from 'react';
-import EnhancedTable from '../ContactTable';
+import React, { Component } from "react";
+import ContactTable from "../ContactTable2";
+import IconButton from "@material-ui/core/IconButton";
+import EditIcon from "@material-ui/icons/Edit";
 
 class Main extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      items: []
+      data: [],
+      columns: [
+        {
+          name: "Id",
+          options: {
+            display: "excluded"
+          }
+        },
+        "Name",
+        "Email",
+        "Phone",
+        "Website",
+        "Actions"
+      ]
     };
   }
+
+  handleOnClick = () => {
+    console.log("click");
+  };
+
   componentDidMount() {
-    fetch('https://jsonplaceholder.typicode.com/users')
+    fetch("https://nodejs-contacts-service.azurewebsites.net/api/contacts")
       .then(res => res.json())
       .then(json => {
         this.setState({
-          items: json
+          data: json.map(item => [
+            item._id,
+            item.name,
+            item.email,
+            item.phone,
+            item.website,
+            <IconButton onClick={this.handleOnClick}>
+              <EditIcon />
+            </IconButton>
+          ])
         });
       });
   }
   render() {
     return (
       <div>
-        <EnhancedTable items={this.state.items} />
+        <ContactTable data={this.state.data} columns={this.state.columns} />
       </div>
     );
   }

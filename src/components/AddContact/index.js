@@ -1,26 +1,20 @@
-import React, { Component } from 'react';
-import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import withStyles from '@material-ui/core/styles/withStyles';
-import Paper from '@material-ui/core/Paper';
+import React, { Component } from "react";
+import TextField from "@material-ui/core/TextField";
+import Grid from "@material-ui/core/Grid";
+import Typography from "@material-ui/core/Typography";
+import Button from "@material-ui/core/Button";
+import withStyles from "@material-ui/core/styles/withStyles";
+import Paper from "@material-ui/core/Paper";
 
 const styles = theme => ({
-  buttons: {
-    display: 'flex',
-    justifyContent: 'flex-end'
-  },
   layout: {
-    width: 'auto',
+    width: "auto",
     marginLeft: theme.spacing.unit * 2,
     marginRight: theme.spacing.unit * 2,
     [theme.breakpoints.up(600 + theme.spacing.unit * 2 * 2)]: {
       width: 600,
-      marginLeft: 'auto',
-      marginRight: 'auto'
+      marginLeft: "auto",
+      marginRight: "auto"
     }
   },
   paper: {
@@ -34,8 +28,8 @@ const styles = theme => ({
     }
   },
   buttons: {
-    display: 'flex',
-    justifyContent: 'flex-end'
+    display: "flex",
+    justifyContent: "flex-end"
   },
   button: {
     marginTop: theme.spacing.unit * 3,
@@ -46,10 +40,10 @@ const styles = theme => ({
 class AddContact extends Component {
   state = {
     user: {
-      name: '',
-      email: '',
-      phone: '',
-      website: ''
+      name: "",
+      email: "",
+      phone: "",
+      website: ""
     }
   };
 
@@ -63,7 +57,7 @@ class AddContact extends Component {
   };
 
   handleSubmit(event) {
-    alert('A name was submitted: ' + this.state.user.name);
+    alert("A name was submitted: " + this.state.user.name);
     event.preventDefault();
   }
 
@@ -87,7 +81,7 @@ class AddContact extends Component {
                   name="name"
                   label="Name"
                   value={name}
-                  onChange={this.handleChange('name')}
+                  onChange={this.handleChange("name")}
                   fullWidth
                   autoComplete="fname"
                 />
@@ -98,7 +92,7 @@ class AddContact extends Component {
                   id="email"
                   name="email"
                   value={email}
-                  onChange={this.handleChange('email')}
+                  onChange={this.handleChange("email")}
                   label="Email"
                   fullWidth
                   autoComplete="email"
@@ -110,7 +104,7 @@ class AddContact extends Component {
                   id="phone"
                   name="phone"
                   value={phone}
-                  onChange={this.handleChange('phone')}
+                  onChange={this.handleChange("phone")}
                   label="Phone"
                   fullWidth
                   autoComplete="Enter Phone Number"
@@ -122,7 +116,7 @@ class AddContact extends Component {
                   id="website"
                   name="website"
                   value={website}
-                  onChange={this.handleChange('website')}
+                  onChange={this.handleChange("website")}
                   label="Website"
                   fullWidth
                   autoComplete="enter website address"
