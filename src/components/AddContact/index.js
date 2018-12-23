@@ -57,10 +57,28 @@ class AddContact extends Component {
     });
   };
 
-  handleSubmit(event) {
-    alert('A name was submitted: ' + this.state.user.name);
-    event.preventDefault();
-  }
+  handleSubmit = e => {
+    //alert('Form was submitted: ' + this.state.user.name);
+    e.preventDefault();
+
+    fetch('http://nodejs-contacts-service.azurewebsites.net/api/contacts', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        name: this.state.user.name,
+        email: this.state.user.email,
+        phone: this.state.user.phone,
+        website: this.state.user.website
+      })
+    })
+      .then(response => response.json().then(json => console.log(json)))
+      .catch(error => console.log(error));
+
+    // clear form, show message of submission of the form, empty state
+  };
 
   render() {
     const { classes } = this.props;
@@ -76,7 +94,7 @@ class AddContact extends Component {
             </Typography>
             <ValidatorForm
               ref="form"
-              onSubmit={this.handleSubmit}
+              onSubmit={e => this.handleSubmit(e)}
               onError={errors => console.log(errors)}
             >
               <Grid container spacing={24}>
@@ -153,7 +171,7 @@ class AddContact extends Component {
                 <Grid item xs={12}>
                   <React.Fragment>
                     <div className={classes.buttons}>
-                      <Button variant="contained" color="primary">
+                      <Button type="submit" variant="contained" color="primary">
                         Primary
                       </Button>
                     </div>
