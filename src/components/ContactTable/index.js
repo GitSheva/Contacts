@@ -21,11 +21,8 @@ import ViewIcon from "@material-ui/icons/Visibility";
 import FilterListIcon from "@material-ui/icons/FilterList";
 import { lighten } from "@material-ui/core/styles/colorManipulator";
 
-
-let counter = 0;
-function createData(name, email, phone, website) {
-  counter += 1;
-  return { id: counter, name, email, phone, website };
+function createData(id, name, email, phone, website) {
+  return { id, name, email, phone, website };
 }
 
 function desc(a, b, orderBy) {
@@ -189,7 +186,10 @@ let EnhancedTableToolbar = props => {
       <div className={classes.actions}>
         {numSelected > 0 ? (
           <Tooltip title="Delete">
-            <IconButton aria-label="Delete">
+            <IconButton
+              aria-label="Delete"
+              //onClick={event => this.handleDeleteClick(event)}
+            >
               <DeleteIcon />
             </IconButton>
           </Tooltip>
@@ -230,19 +230,25 @@ class EnhancedTable extends React.Component {
     order: "asc",
     orderBy: "calories",
     selected: [],
-    data: [],
+    data: this.props.data,
     page: 0,
     rowsPerPage: 5
   };
 
   componentDidMount() {
-    fetch("https://jsonplaceholder.typicode.com/users")
+    fetch("https://nodejs-contacts-service.azurewebsites.net/api/contacts")
       .then(res => res.json())
       .then(json => {
         const dataRows = [];
         json.forEach(item => {
           dataRows.push(
-            createData(item.name, item.email, item.phone, item.website)
+            createData(
+              item._id,
+              item.name,
+              item.email,
+              item.phone,
+              item.website
+            )
           );
         });
         this.setState({ data: dataRows });
@@ -274,6 +280,10 @@ class EnhancedTable extends React.Component {
 
   handleViewClick = (event, id) => {
     alert("View row with id: " + id);
+  };
+
+  handleDeleteClick = event => {
+    alert("Delete row with id: ");
   };
 
   handleClick = (event, id) => {
@@ -359,10 +369,16 @@ class EnhancedTable extends React.Component {
                         {n.website}
                       </TableCell>
                       <TableCell component="th" scope="row" padding="none">
-                        <IconButton aria-label="Edit" onClick={event => this.handleEditClick(event, n.id)}>
+                        <IconButton
+                          aria-label="Edit"
+                          onClick={event => this.handleEditClick(event, n.id)}
+                        >
                           <EditIcon />
                         </IconButton>
-                        <IconButton aria-label="View" onClick={event => this.handleViewClick(event, n.id)}>
+                        <IconButton
+                          aria-label="View"
+                          onClick={event => this.handleViewClick(event, n.id)}
+                        >
                           <ViewIcon />
                         </IconButton>
                       </TableCell>

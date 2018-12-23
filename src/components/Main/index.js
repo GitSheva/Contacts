@@ -8,8 +8,10 @@ class Main extends Component {
       data: []
     };
   }
-
+/*
   componentDidMount() {
+    console.log("Main did mount");
+    
     fetch("https://nodejs-contacts-service.azurewebsites.net/api/contacts")
       .then(res => res.json())
       .then(json => {
@@ -18,10 +20,11 @@ class Main extends Component {
         });
       });
   }
+  */
   render() {
     return (
       <div>
-        <EnhancedTable />
+        <EnhancedTable data={this.state.data}/>
       </div>
     );
   }
