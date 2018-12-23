@@ -16,9 +16,11 @@ import Checkbox from "@material-ui/core/Checkbox";
 import IconButton from "@material-ui/core/IconButton";
 import Tooltip from "@material-ui/core/Tooltip";
 import DeleteIcon from "@material-ui/icons/Delete";
+import EditIcon from "@material-ui/icons/Edit";
+import ViewIcon from "@material-ui/icons/Visibility";
 import FilterListIcon from "@material-ui/icons/FilterList";
 import { lighten } from "@material-ui/core/styles/colorManipulator";
-import { Button } from "@material-ui/core";
+
 
 let counter = 0;
 function createData(name, email, phone, website) {
@@ -266,8 +268,12 @@ class EnhancedTable extends React.Component {
     this.setState({ selected: [] });
   };
 
-  handleButtonClick = (event, id) => {
+  handleEditClick = (event, id) => {
     alert("Update row with id: " + id);
+  };
+
+  handleViewClick = (event, id) => {
+    alert("View row with id: " + id);
   };
 
   handleClick = (event, id) => {
@@ -353,11 +359,12 @@ class EnhancedTable extends React.Component {
                         {n.website}
                       </TableCell>
                       <TableCell component="th" scope="row" padding="none">
-                        <Button
-                          onClick={event => this.handleButtonClick(event, n.id)}
-                        >
-                          Edit
-                        </Button>
+                        <IconButton aria-label="Edit" onClick={event => this.handleEditClick(event, n.id)}>
+                          <EditIcon />
+                        </IconButton>
+                        <IconButton aria-label="View" onClick={event => this.handleViewClick(event, n.id)}>
+                          <ViewIcon />
+                        </IconButton>
                       </TableCell>
                     </TableRow>
                   );
