@@ -1,26 +1,27 @@
-import React, { Component } from 'react';
-import EnhancedTable from '../ContactTable';
+import React, { Component } from "react";
+import EnhancedTable from "../ContactTable";
 
 class Main extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      items: []
+      data: []
     };
   }
+
   componentDidMount() {
-    fetch('https://jsonplaceholder.typicode.com/users')
+    fetch("https://nodejs-contacts-service.azurewebsites.net/api/contacts")
       .then(res => res.json())
       .then(json => {
         this.setState({
-          items: json
+          data: json
         });
       });
   }
   render() {
     return (
       <div>
-        <EnhancedTable items={this.state.items} />
+        <EnhancedTable />
       </div>
     );
   }
