@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Paper from '@material-ui/core/Paper';
+import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 
 const styles = theme => ({
   buttons: {
@@ -79,56 +78,63 @@ class AddContact extends Component {
             <Typography component="h1" variant="h4" align="center">
               Checkout
             </Typography>
-            <Grid container spacing={24}>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  required
-                  id="name"
-                  name="name"
-                  label="Name"
-                  value={name}
-                  onChange={this.handleChange('name')}
-                  fullWidth
-                  autoComplete="fname"
-                />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  required
-                  id="email"
-                  name="email"
-                  value={email}
-                  onChange={this.handleChange('email')}
-                  label="Email"
-                  fullWidth
-                  autoComplete="email"
-                />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  required
-                  id="phone"
-                  name="phone"
-                  value={phone}
-                  onChange={this.handleChange('phone')}
-                  label="Phone"
-                  fullWidth
-                  autoComplete="Enter Phone Number"
-                />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  required
-                  id="website"
-                  name="website"
-                  value={website}
-                  onChange={this.handleChange('website')}
-                  label="Website"
-                  fullWidth
-                  autoComplete="enter website address"
-                />
-              </Grid>
-              {/*
+            <ValidatorForm
+              ref="form"
+              onSubmit={this.handleSubmit}
+              onError={errors => console.log(errors)}
+            >
+              <Grid container spacing={24}>
+                <Grid item xs={12} sm={6}>
+                  <TextField
+                    required
+                    id="name"
+                    name="name"
+                    label="Name"
+                    value={name}
+                    onChange={this.handleChange('name')}
+                    fullWidth
+                    autoComplete="fname"
+                  />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  <TextValidator
+                    label="Email"
+                    onChange={this.handleChange('email')}
+                    name="email"
+                    fullWidth
+                    value={email}
+                    validators={['required', 'isEmail']}
+                    errorMessages={[
+                      'this field is required',
+                      'email is not valid'
+                    ]}
+                  />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  <TextField
+                    required
+                    id="phone"
+                    name="phone"
+                    value={phone}
+                    onChange={this.handleChange('phone')}
+                    label="Phone"
+                    fullWidth
+                    autoComplete="Enter Phone Number"
+                  />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  <TextField
+                    required
+                    id="website"
+                    name="website"
+                    value={website}
+                    onChange={this.handleChange('website')}
+                    label="Website"
+                    fullWidth
+                    autoComplete="enter website address"
+                  />
+                </Grid>
+                {/*
             <Grid item xs={12}>
               <TextField
                 required
@@ -148,16 +154,17 @@ class AddContact extends Component {
               />
             </Grid>
               */}
-              <Grid item xs={12}>
-                <React.Fragment>
-                  <div className={classes.buttons}>
-                    <Button variant="contained" color="primary">
-                      Primary
-                    </Button>
-                  </div>
-                </React.Fragment>
+                <Grid item xs={12}>
+                  <React.Fragment>
+                    <div className={classes.buttons}>
+                      <Button variant="contained" color="primary">
+                        Primary
+                      </Button>
+                    </div>
+                  </React.Fragment>
+                </Grid>
               </Grid>
-            </Grid>
+            </ValidatorForm>
           </Paper>
         </main>
       </React.Fragment>
