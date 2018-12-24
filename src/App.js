@@ -16,7 +16,7 @@ class App extends Component {
           <NavBar />
           <Switch>
             <Route path="/" component={Main} exact />
-            <Route path="/AddContact" component={AddContact} />
+            <Route path="/AddContact/:id" component={AddContact} />
             <Route path="/Test" component={Testc} />
           </Switch>
         </div>

@@ -41,11 +41,13 @@ const styles = theme => ({
 class AddContact extends Component {
   state = {
     user: {
+      _id: '',
       name: '',
       email: '',
       phone: '',
       website: ''
-    }
+    },
+    formState: 0
   };
 
   handleChange = name => ({ target: { value } }) => {
@@ -61,24 +63,74 @@ class AddContact extends Component {
     //alert('Form was submitted: ' + this.state.user.name);
     e.preventDefault();
 
-    fetch('http://nodejs-contacts-service.azurewebsites.net/api/contacts', {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        name: this.state.user.name,
-        email: this.state.user.email,
-        phone: this.state.user.phone,
-        website: this.state.user.website
+    if (this.state.formState === 0) {
+      fetch('http://nodejs-contacts-service.azurewebsites.net/api/contacts', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          name: this.state.user.name,
+          email: this.state.user.email,
+          phone: this.state.user.phone,
+          website: this.state.user.website
+        })
       })
-    })
-      .then(response => response.json().then(json => console.log(json)))
-      .catch(error => console.log(error));
+        .then(response => response.json().then(json => console.log(json)))
+        .catch(error => console.log(error));
 
-    // clear form, show message of submission of the form, empty state
+      // clear form, show message of submission of the form, empty state
+    } else {
+      console.log('updating the form');
+      console.log(this.state.user.name);
+      fetch(
+        'http://nodejs-contacts-service.azurewebsites.net/api/contacts/' +
+          this.state.user._id,
+        {
+          method: 'PUT',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            name: this.state.user.name,
+            email: this.state.user.email,
+            phone: this.state.user.phone,
+            website: this.state.user.website
+          })
+        }
+      )
+        .then(response => response.json().then(json => console.log(json)))
+        .catch(error => console.log(error));
+    }
   };
+
+  componentDidMount() {
+    const id = this.props.match.params.id;
+    const checkForHexRegExp = new RegExp('^[0-9a-fA-F]{24}$');
+    if (!checkForHexRegExp.test(id)) {
+      alert('id is invalid');
+    }
+
+    fetch(
+      'http://nodejs-contacts-service.azurewebsites.net/api/contacts/' + id,
+      {
+        method: 'GET',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json'
+        }
+      }
+    )
+      .then(response =>
+        response.json().then(json => {
+          this.setState({ user: json, formState: 1 });
+          console.log(this.state.user);
+        })
+      )
+      .catch(error => console.log(error));
+  }
 
   render() {
     const { classes } = this.props;
