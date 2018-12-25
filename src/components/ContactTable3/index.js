@@ -11,6 +11,7 @@ import IconButton from "@material-ui/core/IconButton";
 import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
 import ViewIcon from "@material-ui/icons/Visibility";
+import { Link } from "react-router-dom";
 
 const styles = theme => ({
   root: {
@@ -31,10 +32,6 @@ const ContactTable3 = props => {
 
   const handleEditClick = (event, id) => {
     alert("Update row with id: " + id);
-  };
-
-  const handleViewClick = (event, id) => {
-    alert("View row with id: " + id);
   };
 
   const handleDeleteClick = (event, id) => {
@@ -75,14 +72,9 @@ const ContactTable3 = props => {
                   scope="row"
                 >
                   <IconButton
-                    aria-label="View"
-                    onClick={event => handleViewClick(event, row._id)}
-                  >
-                    <ViewIcon />
-                  </IconButton>
-                  <IconButton
                     aria-label="Edit"
-                    onClick={event => handleEditClick(event, row._id)}
+                    component={Link}
+                    to={`/AddContact/${row._id}`}
                   >
                     <EditIcon />
                   </IconButton>
