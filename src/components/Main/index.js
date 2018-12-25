@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import EnhancedTable from "../ContactTable";
+import ContactTable3 from "../ContactTable3";
 
 class Main extends Component {
   constructor(props) {
@@ -8,10 +8,10 @@ class Main extends Component {
       data: []
     };
   }
-/*
+
   componentDidMount() {
     console.log("Main did mount");
-    
+
     fetch("https://nodejs-contacts-service.azurewebsites.net/api/contacts")
       .then(res => res.json())
       .then(json => {
@@ -20,11 +20,11 @@ class Main extends Component {
         });
       });
   }
-  */
+
   render() {
     return (
       <div>
-        <EnhancedTable data={this.state.data}/>
+        <ContactTable3 rows={this.state.data} />
       </div>
     );
   }
