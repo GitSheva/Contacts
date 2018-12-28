@@ -77,7 +77,9 @@ class AddContact extends Component {
           website: this.state.user.website
         })
       })
-        .then(response => response.json().then(json => console.log(json)))
+        .then(response =>
+          response.json().then(json => this.props.history.push('/'))
+        )
         .catch(error => console.log(error));
 
       // clear form, show message of submission of the form, empty state
@@ -101,35 +103,38 @@ class AddContact extends Component {
           })
         }
       )
-        .then(response => response.json().then(json => console.log(json)))
+        .then(response =>
+          response.json().then(json => this.props.history.push('/'))
+        )
         .catch(error => console.log(error));
     }
   };
 
   componentDidMount() {
     const id = this.props.match.params.id;
-    const checkForHexRegExp = new RegExp('^[0-9a-fA-F]{24}$');
-    if (!checkForHexRegExp.test(id)) {
-      alert('id is invalid');
-    }
 
-    fetch(
-      'http://nodejs-contacts-service.azurewebsites.net/api/contacts/' + id,
-      {
-        method: 'GET',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json'
-        }
+    if (id != null) {
+      const checkForHexRegExp = new RegExp('^[0-9a-fA-F]{24}$');
+      if (!checkForHexRegExp.test(id)) {
       }
-    )
-      .then(response =>
-        response.json().then(json => {
-          this.setState({ user: json, formState: 1 });
-          console.log(this.state.user);
-        })
+
+      fetch(
+        'http://nodejs-contacts-service.azurewebsites.net/api/contacts/' + id,
+        {
+          method: 'GET',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json'
+          }
+        }
       )
-      .catch(error => console.log(error));
+        .then(response =>
+          response.json().then(json => {
+            this.setState({ user: json, formState: 1 });
+          })
+        )
+        .catch(error => console.log(error));
+    }
   }
 
   render() {
