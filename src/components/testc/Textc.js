@@ -5,9 +5,7 @@ const Textc = ({ selectValue }) => {
 
   useEffect(() => {
     setValue(selectValue);
-  },
-  [selectValue],
-  );
+  }, [selectValue]);
 
   const handleOnClick = event => {
     alert(value);
@@ -16,6 +14,7 @@ const Textc = ({ selectValue }) => {
 
   const handleOnChange = event => {
     setValue(event.target.value);
+    //added comment for testing
   };
 
   return (
